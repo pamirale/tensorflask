@@ -32,6 +32,7 @@ from flask import Flask, jsonify, request
 
 import numpy as np
 import tensorflow as tf
+import urllib3
 
 app = Flask(__name__)
 
@@ -71,7 +72,20 @@ def load_labels(label_file):
 
 @app.route('/')
 def classify():
-    file_name = request.args['file']
+    src_url = request.args['file']
+
+    http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',ca_certs='/etc/ssl/certs/ca-certificates.crt')
+    
+    r = http.request('GET', src_url, preload_content=False)
+    file_name = 'temp.jpg'
+    with open(file_name, 'wb') as out:
+        while True:
+            data = r.read(65536)
+            if not data:
+                break
+            out.write(data)
+    
+    r.release_conn()
 
     t = read_tensor_from_image_file(file_name,
                                   input_height=input_height,
