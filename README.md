@@ -33,3 +33,7 @@ And you can see that the model is 99% sure that the image is a poodle.
 ## License
 
 Licensed under the Apache 2.0 license. See LICENSE file for details.
+
+## Deploy
+
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/pamirale/tensorflask.git)
