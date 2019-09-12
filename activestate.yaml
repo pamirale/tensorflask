@@ -1,1 +1,18 @@
-project: https://platform.activestate.com/ActiveState/tensorflask?commitID=b8d485b7-e085-479d-9d08-816b11402483
+project: https://platform.activestate.com/alexpamir/DockerDog3?commitID=9bf20ad0-cb31-4252-84bd-d28c187226cf
+scripts:
+# This script uses a secret. Note that you can define your own secrets at
+# https://platform.activestate.com/alexpamir/DockerDog3/scripts
+  - name: helloWorld
+    value: echo ${secrets.user.world}
+events:
+  # This is the ACTIVATE event, it will run whenever a new virtual environment is created (eg. by running `state activate`)
+  # On Linux and macOS this will be ran as part of your shell's rc file, so you can use it to set up aliases, functions, environment variables, etc.
+  - name: ACTIVATE
+    value: |
+      echo "You are now in an 'activated state', this will give you a virtual environment to work in that doesn't affect the rest of your system."
+      echo ""
+      echo "Your 'activated state' allows you to define scripts, events and constants via the activestate.yaml file at the root of your project directory."
+      echo ""
+      echo "To expand your language and/or package selection, or to define client-side encrypted secrets, please visit https://platform.activestate.com/alexpamir/DockerDog3."
+      echo ""
+      echo "To try out scripts with client-side encrypted secrets we've created a simple script for you in your activestate.yaml, try it out by running 'helloWorld'"
